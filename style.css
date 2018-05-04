@@ -1,16 +1,16 @@
 * {
-    outline: 0;
+    padding: 0;
+    margin: 0;
 }
 
 body,html,#map{
     height: 100%;
-    margin: 0;
 }
 
 .search {
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 20px;
+    left: 20px;
     z-index: 1000;
 }
 
@@ -37,32 +37,20 @@ body,html,#map{
     color: #555;
     border: none;
     background-color: #fff;
+    outline: 0;
 }
 
-.searchbtn {
-    width: 50px;
-    height: 45px;
-    font-size: 16px;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;/*子元素垂直居中*/
-    justify-content: center;/*子元素水平居中*/
-    cursor: pointer;
-}
 
-.amap-ui-poi-picker-sugg-list {
-    list-style: none;
-}
-
-#poiInfo {
-    max-width: 304px;
-    background: #fff;
-    border: none;
-    transition: height 0.2s;
+.poiInfo {
+    max-width: 254px;
+    margin-top: 1px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px rgba(0,0,0,.15);
+    border-radius: 3px;
 }
 
 .result {
-    width: 304px;
+    width: 254px;
     margin-top: 1px;
     background-color: white;
     color: #2e97ff;
@@ -73,5 +61,30 @@ body,html,#map{
     font-size: 13px;
     padding: 6px 0;
     cursor: pointer;
-    display: none;
+    outline: 0;
+}
+
+
+.poiList {
+    list-style: none;
+}
+
+.poiList li {
+    padding-bottom: 10px;
+}
+
+.poiList li:first-child {
+    padding-top: 10px;
+}
+
+.poiList li:hover {
+    background-color: rgba(0, 81, 194, 0.07);
+}
+
+.poiList li p{
+    margin: 0 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+    color: rgba(0,0,0,0.7);
 }
