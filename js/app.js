@@ -26,6 +26,15 @@ let locationData = [{
     name: "宏悦酒店"
 }];
 
+const weatherMap = {
+    'sunny': '晴天',
+    'cloudy': '多云',
+    'overcast': '阴',
+    'lightrain': '小雨',
+    'heavyrain': '大雨',
+    'snow': '雪'
+}
+
 let map,infoWindow;
 
 function init() {
@@ -33,6 +42,7 @@ function init() {
         zoom:15,
         center: [116.480989, 39.989759]
     });
+
     ko.applyBindings(new ViewModel());
 }
 
@@ -62,13 +72,8 @@ let ViewModel = function () {
         marker.content = data.name;
         marker.on('click',markerClick);
 
-        function markerClick(e) {
-            marker.setAnimation("AMAP_ANIMATION_BOUNCE");
-            setTimeout(function() {
-                marker.setAnimation(null);
-            }, 2400);
-            infoWindow.setContent(e.target.content);
-            infoWindow.open(map, e.target.getPosition());
+        function markerClick() {
+            getWeather(marker);
         }
 
         location.marker = marker;
@@ -88,6 +93,7 @@ let ViewModel = function () {
             });
             return self.locations();
         } else {
+            infoWindow.close();
             let data = self.locations().filter(function(location) {
                 // 输入框匹配条件
                 let matched = location.name.indexOf(self.query()) !== -1;
@@ -105,7 +111,12 @@ let ViewModel = function () {
             }
             return data;
         }
-    })
+    });
+
+    //筛选列表点击事件
+    self.clickLocation = function (data) {
+        getWeather(data.marker)
+    }
 
     //展开/隐藏搜索结果
     $result.click(function () {
@@ -119,6 +130,25 @@ let ViewModel = function () {
         }
     })
 
+    //异步请求天气API
+    function getWeather(marker) {
+        map.getCity(function (result) {
+            $.ajax({
+                url: 'https://test-miniprogram.com/api/weather/now',
+                data: { city: result.province}
+            }).done(function (result) {
+                marker.setAnimation("AMAP_ANIMATION_BOUNCE");
+                setTimeout(function() {
+                    marker.setAnimation(null);
+                }, 2400);
+                infoWindow.setContent(`<p>${marker.content}</p>
+                                        <p>气温：${result.result.now.temp}°</p>
+                                        <p>${weatherMap[result.result.now.weather]}</p>`);
+                infoWindow.open(map, marker.getPosition());
+            })
+        })
+    }
+
     function showResult() {
         $result.css('display','block');
     }
@@ -127,3 +157,4 @@ let ViewModel = function () {
         $result.css('display','none');
     }
 }
+

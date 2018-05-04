@@ -64,7 +64,6 @@ body,html,#map{
     outline: 0;
 }
 
-
 .poiList {
     list-style: none;
 }
@@ -87,4 +86,11 @@ body,html,#map{
     border-bottom: 1px solid #eaeaea;
     cursor: pointer;
     color: rgba(0,0,0,0.7);
+}
+
+.error {
+    height: 100%;
+    font-size: 40px;
+    margin-top: 10px;
+    text-align: center;
 }
