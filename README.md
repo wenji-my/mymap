@@ -1,12 +1,14 @@
 # 街区地图
 
-这是一个基于浏览器的街区地图，项目中使用了高德地图API。
+这是一个使用MVVM框架构建的街区地图，搜索列表中有5个地点，并且地图上默认显示这5个标记，当你搜索列表中的任意地点时，地图只会显示该地点的标记，其他地点的标记则会消失。
 
-## 重要知识点
-knockout
+## 部分效果截图
+![Image text]()
 
-## 安装
+## 使用
 
-首先从GitHub上把项目克隆到本地仓库
-```git clone https://github.com/wenji-my/mymap.git```<br>
-然后在浏览器打开根目录下的index.html便可以看到整个地图，并且会自动定位到当前所在地。
+```
+git clone https://github.com/wenji-my/mymap.git
+```
+
+然后在浏览器打开index.html即可
