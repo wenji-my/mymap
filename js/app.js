@@ -39,7 +39,7 @@ let map,infoWindow;
 
 function init() {
     map = new AMap.Map('map',{
-        zoom:15,
+        zoom:16,
         center: [116.480989, 39.989759]
     });
 
